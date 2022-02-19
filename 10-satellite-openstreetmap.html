@@ -1,0 +1,119 @@
+<!-- /**
+* Project: Working with Data and APIs in JavaScript
+* Filename: 10-satellite-openstreetmap.html
+* Course: The Coding Train -- Working with Data and APIs in JavaScript
+* Description: The Coding Train -- Working with Data and APIs in JavaScript- ISS Satellite Tracking
+* Directory: D:\04 Work\03 Training Course\59 Javascript\01 Course -- Youtube- The Coding Train
+* Reference Link: https://www.youtube.com/watch?v=nZaZ2dB6pow&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=7
+* Repository: N/A
+* 
+* Author: Yugo Gautomo
+* Status: Final February 01, 2022
+*/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- External resource link element -- CSS- Leaflet -->
+  <!-- Reference https://leafletjs.com/examples/quick-start/ -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+
+  <!-- External resource script element -- JavaScript- Leaflet.js -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #map_canvas { 
+      height: 180px; 
+    }
+    .leaflet-container {
+      height: 400px;
+      width: 600px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+
+  <title>The Coding Train -- Working with Data and APIs in JavaScript- Fetth JSON API</title>
+</head>
+<body>
+  <h1>10-satellite-openstreetmap</h1>
+  <h1>Where the ISS Satellite</h1>
+
+  <p>
+    latitude: <span id="lat"></span><br>
+    longitude: <span id="long"></span>
+  </p>
+  <div id="map_canvas"></div>
+
+  <script>
+    // Async function to fetch json data
+    async function fetchSatellite(urlLink) {
+      const response = await fetch(urlLink);
+      const data = await response.json();
+      const {latitude, longitude} = data;
+
+      console.log(`get fetch ${urlLink} response`);
+      console.log(response);
+      if (!response.ok) {
+        console.log(`catch fecth ${urlLink} response error!`, response.status, response.statusText);
+        throw new Error('Network response was not OK');
+      }
+
+      console.log(`get fetch ${urlLink} response.text`);
+      console.log(data);
+      console.log(`latitude: ${latitude}, longitude: ${longitude}`);
+      return { latitude, longitude };
+    }
+
+    // Function to create map
+    function mapCreate(coordinate, domElement) {
+      // const [ latitude, longitude, zoom ] = [ 0, 0, 1];                                         // coordinate initial projection
+      // const { latitude, longitude, zoom } = { latitude: 51.505, longitude: -0.09, zoom: 13 };   // coordinate London city
+      const [{ latitude, longitude }, zoom] = [coordinate, 5];                                  // coordinate ISS Satellite
+      const map = L.map(domElement).setView([latitude, longitude], zoom);
+      const iconISS = L.icon({                                                                       // Add icon on the OpenStreetMap tiles
+                    iconUrl: '10-isssatellite.png',
+                    iconSize: [50, 32],
+                    iconAnchor: [25, 32]
+                  });
+
+      // Add the OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+        maxZoom: 18,
+      }).addTo(map);
+
+      // Add marker and icon on the OpenStreetMap tiles
+      L.marker([latitude, longitude], {icon: iconISS}).addTo(map);
+
+      return null;
+    }
+
+    // Main Program
+    // External resource data source -- https://api.wheretheiss.at/v1/satellites/25544
+    // Reference https://wheretheiss.at
+    const urlDataSource = 'https://api.wheretheiss.at/v1/satellites/25544';
+    const domElementID = 'map_canvas';
+
+    fetchSatellite(urlDataSource)
+      .then(response => {
+        mapCreate(response, domElementID)
+        document.getElementById('lat').textContent = response.latitude;
+        document.getElementById('long').textContent = response.longitude;
+        console.log(`processing fetch ${urlDataSource} finished`);
+      })
+      .catch(error => {
+        console.log("catch fecth process error!");
+        console.error(error);
+      });
+  </script>
+</body>
+</html>

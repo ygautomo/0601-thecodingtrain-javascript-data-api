@@ -1,0 +1,62 @@
+<!-- /**
+* Project: Working with Data and APIs in JavaScript
+* Filename: 04-fetch-poem.html
+* Course: The Coding Train -- Working with Data and APIs in JavaScript
+* Description: The Coding Train -- Working with Data and APIs in JavaScript- Fetch Function- Poem
+* Directory: D:\04 Work\03 Training Course\59 Javascript\01 Course -- Youtube- The Coding Train
+* Reference Link: https://www.youtube.com/watch?v=tc8DU14qX6I&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=3
+* Repository: N/A
+* 
+* Author: Yugo Gautomo
+* Status: Final February 01, 2022
+*/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Coding Train -- Working with Data and APIs in JavaScript- Fetch Function</title>
+</head>
+<body>
+  <h1>04-fetch-poem</h1>
+  <p id="poem"></p>
+
+  <script>
+    async function fetchText(fileName) {
+      const response = await fetch(fileName);
+      const text = await response.text();
+
+      console.log(`get fetch ${fileName} response`);
+      console.log(response);
+      if (response.ok) {
+        console.log(`get fetch ${fileName} response.text`);
+        console.log(text);
+        // return await response.text();
+        return text;
+      } else {
+        console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
+        throw new Error('Network response was not OK');
+      }
+      return null;
+    }
+
+    // Main Program
+    // const fileText = '04-poem-error.txt';
+    const fileText = '04-poem.txt';
+
+    console.log("fecth the text file", fileText);
+    fetchText(fileText)
+      .then(response => {
+        // document.getElementById('poem_error').textContent = response;
+        document.getElementById('poem').textContent = response;
+        console.log(`processing fetch ${fileText} success`);
+      })
+      .catch(error => {
+        console.log(`processing fetch ${fileText} error!`);
+        console.error(error);
+      });
+  </script>
+</body>
+</html>

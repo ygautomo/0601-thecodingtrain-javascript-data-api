@@ -1,0 +1,119 @@
+<!-- /**
+* Project: Working with Data and APIs in JavaScript
+* Filename: 07-temperature-datatables.html
+* Course: The Coding Train -- Working with Data and APIs in JavaScript
+* Description: The Coding Train -- Working with Data and APIs in JavaScript- Temperature Table
+* Directory: D:\04 Work\03 Training Course\59 Javascript\01 Course -- Youtube- The Coding Train
+* Reference Link: N/A
+* Repository: N/A
+* 
+* Author: Yugo Gautomo
+* Status: Final February 01, 2022
+*/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- External resource link element -- stylesheet- CSS Bootstrap 04 & CSS Data Tabels -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css"> -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+
+  <title>The Coding Train -- Working with Data and APIs in JavaScript- Temperature Table</title>
+</head>
+<body>
+  <h1>07-temperature-datatables</h1>
+  <!-- <table id="table_temperature"></table> -->
+  <table id="table_temperature" class="display" width="100%"></table>
+
+  <!-- Optional JavaScript; the script is put before </body> html tag -->
+  <!-- Reference https://getbootstrap.com/docs/4.0/getting-started/introduction -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- Data Tables Script -->
+  <!-- Reference https://cdn.datatables.net/ -->
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Reference https://datatables.net/examples/index -->
+  <!-- Reference https://datatables.net/reference/option/ -->
+  <!-- Example -- Individual column searching (text inputs) -->
+  <script>
+    // Async function to fetch CSV data
+    async function fetchCSVData(fileName) {
+      const response = await fetch(fileName);
+      const data = await response.text();
+      let arrData = [];
+      let arrHeader = [];
+
+      console.log(`get fetch ${fileName} response`);
+      console.log(response);
+      if (response.ok) {
+        console.log(`get fetch ${fileName} response.text`);
+        console.log(data);
+
+        const tableHeader = data.split('\n')[0].split(',');
+        tableHeader.forEach(item => {
+          arrHeader.push({ "title": item });
+        })
+
+        console.log(arrHeader)
+        const tableData = data.split('\n').splice(1);
+        tableData.forEach(row => {
+          const columns = row.split(',');
+          arrData.push(columns);
+        })
+
+        // console.log(arrDataTables)
+        return [arrHeader, arrData];
+      } else {
+        console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
+        throw new Error('Network response was not OK');
+      }
+      return null;
+    }
+
+    // Function to render fetched CSV Data
+    function renderCSVData(tableInput) {
+      const [tableHeader, tableData] = tableInput;
+
+      console.log("Render CSV Data");
+      console.log(tableInput);
+      $(document).ready(function() {
+        $('#table_temperature').DataTable( {
+          data: tableData,
+          columns: tableHeader
+        });
+      });
+      return null;
+    };
+
+    // Main Program
+    // External resource data source -- 06-temperature.csv
+    // Reference https://data.giss.nasa.gov/gistemp
+    // Reference https://earthobservatory.nasa.gov/world-of-change/global-temperatures
+    // const fileCSV = '06-temperature-test-error.csv';
+    // const fileCSV = '06-temperature-test.csv';
+    const fileCSV = '06-temperature.csv';   // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
+    const tableID = 'table_temperature';
+
+    console.log("fecth the text file", fileCSV);
+    fetchCSVData(fileCSV)
+      .then(response => {
+        renderCSVData(response);
+        console.log(`processing fetch & render ${fileCSV} success`);
+      })
+      .catch(error => {
+        console.log(`processing fetch ${fileCSV} error!`);
+        console.error(error);
+      });
+  </script>
+</body>
+</html>

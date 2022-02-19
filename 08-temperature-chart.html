@@ -1,0 +1,114 @@
+<!-- /**
+* Project: Working with Data and APIs in JavaScript
+* Filename: 08-temperature-chart.html
+* Course: The Coding Train -- Working with Data and APIs in JavaScript
+* Description: The Coding Train -- Working with Data and APIs in JavaScript- Temperature Chart
+* Directory: D:\04 Work\03 Training Course\59 Javascript\01 Course -- Youtube- The Coding Train
+* Reference Link: https://www.youtube.com/watch?v=5-ptp9tRApM&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=5
+* Repository: N/A
+* 
+* Author: Yugo Gautomo
+* Status: Final February 01, 2022
+*/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- External resource link element -- JavaScript- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+
+  <title>The Coding Train -- Working with Data and APIs in JavaScript- Temperature Chart</title>
+</head>
+<body>
+  <h1>08-temperature-chart</h1>
+  <!-- <p id="data"></p> -->
+  <canvas id="chart" width="800" height="400"></canvas>
+
+  <script>
+    // Async function to fetch CSV data
+    async function fetchCSVata(fileName) {
+      const response = await fetch(fileName);
+      const data = await response.text();
+      const xLabel = [];
+      const yTemps = [];
+
+      console.log(`get fetch ${fileName} response`);
+      console.log(response);
+      if (!response.ok) {
+        console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
+        throw new Error('Network response was not OK');
+      }
+
+      console.log(`get fetch ${fileName} response.text`);
+      console.log(data);
+
+      const table = data.split('\n').slice(1);
+      table.forEach(row => {
+        const columns = row.split(',');
+        const year = columns[0];
+        const temperature = columns[1];
+
+        xLabel.push(year);
+        yTemps.push(parseFloat(temperature) + 14);
+        console.log(year, temperature);
+      })
+      return {xLabel, yTemps};
+    }
+
+    // Function to create chart
+    async function chartCreate(fileName) {
+      const data = await fetchCSVata(fileName);
+      const ctx = document.getElementById('chart').getContext('2d');
+      const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.xLabel,
+          datasets: [{
+            label: 'Combined Land-Surface Air and Sea-Surface Water Temperature °C',
+            data: data.yTemps,
+            fill: false,
+            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+            borderColor: ['rgba(255, 99, 132, 1)'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              // beginAtZero: true
+              ticks: {
+                // Include a degree sign in the ticks
+                callback: function(value, index, ticks) {
+                  return value + ' ℃';
+                }
+              }
+            }
+          }
+        }
+      })
+    }
+
+    // Main Program
+    // External resource data source -- 06-temperature.csv
+    // Reference https://data.giss.nasa.gov/gistemp
+    // Reference https://earthobservatory.nasa.gov/world-of-change/global-temperatures
+    // const fileCSV = '06-temperature-test-error.csv';
+    // const fileCSV = '06-temperature-test.csv';
+    const fileCSV = '06-temperature.csv';   // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
+
+    console.log("create chart & fecth the text file", fileCSV);
+    chartCreate(fileCSV)
+      .then(response => {
+        console.log(`processing fetch & create chart ${fileCSV} finished`);
+      })
+      .catch(error => {
+        console.log("catch fecth process error!");
+        console.error(error);
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!-- /**
+* Project: Working with Data and APIs in JavaScript
+* Filename: 05-fetch-array.html
+* Course: The Coding Train -- Working with Data and APIs in JavaScript
+* Description: The Coding Train -- Working with Data and APIs in JavaScript- Fetch Function- Array
+* Directory: D:\04 Work\03 Training Course\59 Javascript\01 Course -- Youtube- The Coding Train
+* Reference Link: https://www.youtube.com/watch?v=tc8DU14qX6I&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=3
+* Repository: N/A
+* 
+* Author: Yugo Gautomo
+* Status: Final February 01, 2022
+*/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Coding Train -- Working with Data and APIs in JavaScript- Fetch Function</title>
+</head>
+<body>
+  <h1>05-fetch-array</h1>
+
+  <script>
+    async function fetchArray(fileNames) {
+      const blobImages = []
+      for (let fileName of fileNames) {
+        const response = await fetch(fileName);
+        const blob = await response.blob();
+
+        console.log(`get fetch ${fileName} response`);
+        console.log(response);
+        if (response.ok) {
+          console.log(`get fetch ${fileName} response.blob`);
+          console.log(blob);
+          blobImages.push(blob);
+        } else {
+          console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
+          throw new Error('Network response was not OK');
+        }
+      }
+      return blobImages;
+    }
+
+    // Main Program
+    const fileNames = [
+      '05-images/daniele-levis-pelusi-311027-unsplash.jpg',
+      '05-images/guy-stevens-746794-unsplash.jpg',
+      '05-images/sharon-pittaway-98257-unsplash.jpg'
+    ];
+
+    console.log("fetch the array images file", fileNames);
+    fetchArray(fileNames)
+      .then(responseArray => {
+        for (let item of responseArray) {
+          const img = document.createElement('img');
+
+          img.src = URL.createObjectURL(item);
+          img.width = '200';
+          document.body.append(img);
+        }
+        console.log(`processing fetch ${fileNames} success`);
+      })
+      .catch(error => {
+        console.log(`processing fetch ${fileNames} error!`);
+        console.error(error);
+      });
+  </script>
+</body>
+</html>

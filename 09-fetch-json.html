@@ -1,0 +1,75 @@
+<!-- /**
+* Project: Working with Data and APIs in JavaScript
+* Filename: 09-fetch-json.html
+* Course: The Coding Train -- Working with Data and APIs in JavaScript
+* Description: The Coding Train -- Working with Data and APIs in JavaScript- Temperature Chart
+* Directory: D:\04 Work\03 Training Course\59 Javascript\01 Course -- Youtube- The Coding Train
+* Reference Link: https://www.youtube.com/watch?v=uxf0--uiX0I&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=6
+* Repository: N/A
+* 
+* Author: Yugo Gautomo
+* Status: Final February 01, 2022
+*/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The Coding Train -- Working with Data and APIs in JavaScript- Fetth JSON API</title>
+</head>
+<body>
+  <h1>09-fetch-json</h1>
+  <h1>Where the ISS Satellite</h1>
+
+  <p>
+    latitude: <span id="lat"></span><br>
+    longitude: <span id="long"></span>
+  </p>
+
+  <script>
+    // Async function to fetch json data
+    async function fetchSatellite(urlLink) {
+      const response = await fetch(urlLink);
+      const data = await response.json();
+      const { latitude, longitude } = data;
+
+      console.log(`get fetch ${urlLink} response`);
+      console.log(response);
+      if (!response.ok) {
+        console.log(`catch fecth ${urlLink} response error!`, response.status, response.statusText);
+        throw new Error('Network response was not OK');
+      }
+
+      console.log(`get fetch ${urlLink} response.text`);
+      console.log(data);
+      console.log(`latitude: ${latitude}, longitude: ${longitude}`);
+      return { latitude, longitude };
+    }
+
+    // Main Program
+    // External resource data source -- https://api.wheretheiss.at/v1/satellites/25544
+    // Reference https://wheretheiss.at
+    const urlDataSource = 'https://api.wheretheiss.at/v1/satellites/25544';
+    // let position = {
+    //   lat: -45,
+    //   long: 112
+    // };
+
+    // console.log(position);
+
+    fetchSatellite(urlDataSource)
+      .then(response => {
+        document.getElementById('lat').textContent = response.latitude;
+        document.getElementById('long').textContent = response.longitude;
+        console.log(`processing fetch ${urlDataSource} finished`);
+      })
+      .catch(error => {
+        console.log("catch fecth process error!");
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
