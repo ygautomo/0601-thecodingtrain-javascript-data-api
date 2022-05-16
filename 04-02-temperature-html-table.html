@@ -1,15 +1,15 @@
 <!-- /**
-* Project: Working with Data and APIs in JavaScript
-* Filename: 07-temperature-html-table.html
-* Course: The Coding Train -- Working with Data and APIs in JavaScript
-* Description: The Coding Train -- Working with Data and APIs in JavaScript- Temperature Table
-* Directory: D:\04 Work\03 Training Course\59 Javascript\01 Course -- Youtube- The Coding Train
-* Reference Link: N/A
-* Repository: N/A
-* 
-* Author: Yugo Gautomo
-* Status: Final February 01, 2022
-*/ -->
+ * Project: Working with Data and APIs in JavaScript
+ * Filename: 04-02-temperature-html-table.html
+ * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 04 Tabular Data- Temperature HTML Table
+ * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: N/A
+ * Repository: N/A
+ * 
+ * Author: Yugo Gautomo
+ * Status: Final February 01, 2022
+ */ -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,14 +17,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Coding Train -- Working with Data and APIs in JavaScript- Temperature Table</title>
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 04 Tabular Data- Temperature HTML Table</title>
 </head>
 <body>
-  <h1>07-temperature-html-table</h1>
+  <h1>04 Tabular Data- Temperature HTML Table</h1>
+  <h2>04-02-temperature-html-table.html</h2>
   <table id="table_temperature"></table>
 
   <script>
-    // Async function to fetch CSV data
+    // 00 clear the console
+    // console.clear();
+
+    // 01 async function fetchCSVData()
     async function fetchCSVData(fileName) {
       const response = await fetch(fileName);
       const data = await response.text();
@@ -33,27 +37,29 @@
       console.log(response);
       if (response.ok) {
         console.log(`get fetch ${fileName} response.text`);
-        console.log(data);
+        // console.log(data);
 
-        const table = data.split('\n')  // .splice(1);
+        // const table = data.split('\n').slice(1);      // remove header or row data[0]
+        const table = data.split('\n');
+        console.log(table);
         table.forEach(row => {
           const columns = row.split(',');
           const year = columns[0];
-          const temperature = columns[1]
+          const temp = columns[1]
 
-          console.log(year, temperature);
+          console.log(year, temp);
         })
 
-        // console.log(table)
         return table;
       } else {
         console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
         throw new Error('Network response was not OK');
       }
+
       return null;
     }
 
-    // Function to create DOM table element
+    // 02 function createDOMTable()
     function createDOMTable(domElement) {
       let htmlTable = document.getElementById(domElement);
       // let htmlTable = document.createElement('table');
@@ -69,7 +75,7 @@
       return null;
     }
 
-    // Function to render fetched CSV Data
+    // 03 function renderCSVData()
     function renderCSVData(tableInput) {
       let bHeader = true;
       let htmlThead = document.getElementsByTagName('thead')[0];
@@ -103,23 +109,21 @@
           htmlTbody.appendChild(htmlTrow);
         }
       });
+
       return null;
     }
 
-    // Main Program
-    // External resource data source -- 06-temperature.csv
-    // Reference https://data.giss.nasa.gov/gistemp
-    // Reference https://earthobservatory.nasa.gov/world-of-change/global-temperatures
-    // const fileCSV = '06-temperature-test-error.csv';
-    // const fileCSV = '06-temperature-test.csv';
-    const fileCSV = '06-temperature.csv';   // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
+    // 99 main program or function main()
+    // const fileCSV = '04-temperature-test-error.csv';
+    // const fileCSV = '04-temperature-test.csv';
+    const fileCSV = '04-temperature.csv';     // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
     const domTableID = 'table_temperature';
 
     createDOMTable(domTableID);
     console.log("table created & fecth the text file", fileCSV);
     fetchCSVData(fileCSV)
-      .then(response => {
-        renderCSVData(response);
+      .then(data => {
+        renderCSVData(data);
         console.log(`processing fetch & render text file ${fileCSV} finished`);
       })
       .catch(error => {
@@ -129,3 +133,11 @@
   </script>
 </body>
 </html>
+
+<!-- Data Sources:
+- National Aeronautics and Space Administration (NASA), GISS Surface Temperature Analysis (https://data.giss.nasa.gov/gistemp)
+- National Aeronautics and Space Administration (NASA), Earth Observatory (https://earthobservatory.nasa.gov/world-of-change/global-temperatures) -->
+
+<!-- References:
+- Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

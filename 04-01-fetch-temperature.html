@@ -1,0 +1,87 @@
+<!-- /**
+ * Project: Working with Data and APIs in JavaScript
+ * Filename: 04-01-fetch-temperature.html
+ * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 04 Tabular Data- Temperature
+ * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: https://www.youtube.com/watch?v=RfMkdvN-23o&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=4
+ * Repository: N/A
+ * 
+ * Author: Yugo Gautomo
+ * Status: Final February 01, 2022
+ */ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 04 Tabular Data- Temperature</title>
+</head>
+<body>
+  <h1>04 Tabular Data- Temperature</h1>
+  <h2>04-01-fetch-temperature.html</h2>
+  <p id="data" width=""400"></p>
+
+  <script>
+    // 00 clear the console
+    // console.clear();
+
+    // 01 async function fetchCSVData()
+    async function fetchCSVData(fileName) {
+      const response = await fetch(fileName);
+      const data = await response.text();
+
+      console.log(`get fetch ${fileName} response`);
+      console.log(response);
+      if (response.ok) {
+        console.log(`get fetch ${fileName} response.text`);
+        // console.log(data);
+
+        const table = data.split('\n').slice(1);      // remove header or row data[0]
+        // console.log(table);
+        table.forEach(row => {
+          const columns = row.split(',');
+          const year = columns[0];
+          const temp = columns[1]
+
+          console.log(year, temp);
+        })
+
+        return data;
+      } else {
+        console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
+        throw new Error('Network response was not OK');
+      }
+
+      return null;
+    }
+
+    // 01 main program or function main() to call async function fetchCSVData()
+    // const fileCSV = '04-temperature-test-error.csv';
+    // const fileCSV = '04-temperature-test.csv';
+    const fileCSV = '04-temperature.csv';     // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
+
+    console.log("fecth the text file", fileCSV);
+    fetchCSVData(fileCSV)
+      .then(data => {
+        // document.getElementById('data_error').textContent = response;
+        document.getElementById('data').textContent = data;
+        console.log(`processing fetch ${fileCSV} success`);
+      })
+      .catch(error => {
+        console.log(`processing fetch ${fileCSV} error!`);
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
+
+<!-- Data Sources:
+- National Aeronautics and Space Administration (NASA), GISS Surface Temperature Analysis (https://data.giss.nasa.gov/gistemp)
+- National Aeronautics and Space Administration (NASA), Earth Observatory (https://earthobservatory.nasa.gov/world-of-change/global-temperatures) -->
+
+<!-- References:
+- Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->
