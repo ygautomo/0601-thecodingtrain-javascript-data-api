@@ -1,8 +1,8 @@
 <!-- /**
  * Project: Working with Data and APIs in JavaScript
- * Filename: 09-fetch-json.html
+ * Filename: 06-fetch-json-api.html
  * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
- * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- Temperature Chart
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 06 Fetch JSON API
  * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
  * Reference Link: https://www.youtube.com/watch?v=uxf0--uiX0I&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=6
  * Repository: N/A
@@ -17,12 +17,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>The Coding Train -- Working with Data and APIs in JavaScript- Fetth JSON API</title>
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 06 Fetch JSON API</title>
 </head>
 <body>
-  <h1>09-fetch-json</h1>
-  <h1>Where the ISS Satellite</h1>
+  <h1>06 Fetch JSON API</h1>
+  <h1>the ISS Satellite</h1>
+  <h2>06-fetch-json-api.html</h2>
 
   <p>
     latitude: <span id="lat"></span><br>
@@ -30,7 +30,10 @@
   </p>
 
   <script>
-    // Async function to fetch json data
+    // 00 clear the console
+    // console.clear();
+
+    // 01 async function fetchSatellite()
     async function fetchSatellite(urlLink) {
       const response = await fetch(urlLink);
       const data = await response.json();
@@ -38,27 +41,28 @@
 
       console.log(`get fetch ${urlLink} response`);
       console.log(response);
-      if (!response.ok) {
+      if (response.ok) {
+        console.log(`get fetch ${urlLink} response.text`);
+        // console.log(data);
+        console.log(`latitude: ${latitude}, longitude: ${longitude}`);
+      
+        return { latitude, longitude };
+      } else {
         console.log(`catch fecth ${urlLink} response error!`, response.status, response.statusText);
         throw new Error('Network response was not OK');
       }
 
-      console.log(`get fetch ${urlLink} response.text`);
-      console.log(data);
-      console.log(`latitude: ${latitude}, longitude: ${longitude}`);
-      return { latitude, longitude };
+      return null;
     }
 
-    // Main Program
-    // External resource data source -- https://api.wheretheiss.at/v1/satellites/25544
-    // Reference https://wheretheiss.at
-    const urlDataSource = 'https://api.wheretheiss.at/v1/satellites/25544';
-    // let position = {
+    // 01 main program or function main() to call async function fetchSatellite()
+    const urlDataSource = 'https://api.wheretheiss.at/v1/satellites/25544';     // data source
+    // let positionISS = {
     //   lat: -45,
     //   long: 112
     // };
 
-    // console.log(position);
+    // console.log(positionISS);
 
     fetchSatellite(urlDataSource)
       .then(response => {
@@ -73,3 +77,12 @@
   </script>
 </body>
 </html>
+
+<!-- Data Sources:
+- Where the ISS at?, Real-time ISS location (https://wheretheiss.at)
+- Where the ISS at?, REST API Documentation (https://wheretheiss.at/w/developer)
+- Where the ISS at?, REST API End Point (https://api.wheretheiss.at/v1/satellites/25544) -->
+
+<!-- References:
+- Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

@@ -29,7 +29,6 @@
   <h1>04 Tabular Data- Temperature Datatables</h1>
   <h2>04-03-temperature-datatables.html</h2>
 
-  <!-- <table id="table_temperature"></table> -->
   <table id="table_temperature" class="display" width="100%"></table>
 
   <!-- Optional JavaScript; the script is put before \</body\> html tag -->
@@ -50,14 +49,14 @@
     async function fetchCSVData(fileName) {
       const response = await fetch(fileName);
       const data = await response.text();
-      let arrData = [];
+      let arrDataItem = [];
       let arrHeader = [];
 
       console.log(`get fetch ${fileName} response`);
       console.log(response);
       if (response.ok) {
         console.log(`get fetch ${fileName} response.text`);
-        console.log(data);
+        // console.log(data);
 
         const tableHeader = data.split('\n')[0].split(',');
         tableHeader.forEach(item => {
@@ -66,13 +65,14 @@
 
         console.log(arrHeader)
         const tableData = data.split('\n').slice(1);      // remove header or row data[0]
+        console.log(tableData);
         tableData.forEach(row => {
           const columns = row.split(',');
-          arrData.push(columns);
+          arrDataItem.push(columns);
         })
 
-        // console.log(arrDataTables)
-        return [arrHeader, arrData];
+        // console.log(arrDataItem)
+        return [arrHeader, arrDataItem];
       } else {
         console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
         throw new Error('Network response was not OK');
@@ -121,7 +121,7 @@
 - National Aeronautics and Space Administration (NASA), GISS Surface Temperature Analysis (https://data.giss.nasa.gov/gistemp)
 - National Aeronautics and Space Administration (NASA), Earth Observatory (https://earthobservatory.nasa.gov/world-of-change/global-temperatures) -->
 
-<!-- Library:
+<!-- Libraries:
 - Bootstrap 4.0, Introduction (https://getbootstrap.com/docs/4.0/getting-started/introduction)
 - DataTables (https://datatables.net)
 - DataTables, Example, Individual column searching (text inputs) (https://datatables.net/examples/index)

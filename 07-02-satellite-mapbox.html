@@ -1,15 +1,15 @@
 <!-- /**
-  * Project: Working with Data and APIs in JavaScript
-  * Filename: 10-satellite-mapbox.html
-  * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
-  * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- ISS Satellite Tracking
-  * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
-  * Reference Link: https://www.youtube.com/watch?v=nZaZ2dB6pow&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=7
-  * Repository: N/A
-  * 
-  * Author: Yugo Gautomo
-  * Status: Final February 01, 2022
-  */ -->
+ * Project: Working with Data and APIs in JavaScript
+ * Filename: 07-02-satellite-mapbox.html
+ * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 07 Mapping Geolocation with Leaflet.js- ISS Satellite Tracking with Mapbox
+ * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: https://www.youtube.com/watch?v=nZaZ2dB6pow&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=7
+ * Repository: N/A
+ * 
+ * Author: Yugo Gautomo
+ * Status: Final February 01, 2022
+ */ -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +19,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- External resource link element -- CSS- Leaflet -->
-  <!-- Reference https://leafletjs.com/examples/quick-start/ -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
 
   <!-- External resource script element -- JavaScript- Leaflet.js -->
@@ -38,20 +37,24 @@
     }
   </style>
 
-  <title>The Coding Train -- Working with Data and APIs in JavaScript- Fetth JSON API</title>
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 07 Mapping Geolocation with Leaflet.js- ISS Satellite Tracking with Mapbox</title>
 </head>
 <body>
-  <h1>10-satellite-mapbox</h1>
+  <h1>07 Mapping Geolocation with Leaflet.js- ISS Satellite Tracking with Mapbox</h1>
   <h1>Where the ISS Satellite</h1>
+  <h2>07-02-satellite-mapbox.html</h2>
 
   <p>
     latitude: <span id="lat"></span><br>
-    longitude: <span id="long"></span>
+    longitude: <span id="long"></span><br>
   </p>
   <div id="map_canvas"></div>
 
   <script>
-    // Async function to fetch json data
+    // 00 clear the console
+    // console.clear();
+
+    // 01 async function fetchSatellite()
     async function fetchSatellite(urlLink) {
       const response = await fetch(urlLink);
       const data = await response.json();
@@ -67,22 +70,23 @@
       console.log(`get fetch ${urlLink} response.text`);
       console.log(data);
       console.log(`latitude: ${latitude}, longitude: ${longitude}`);
+
       return { latitude, longitude };
     }
 
-    // Function to create map
-    function mapCreate(coordinate, domElement) {
-      // const [ latitude, longitude, zoom ] = [ 0, 0, 1];                                         // coordinate initial projection
-      // const { latitude, longitude, zoom } = { latitude: 51.505, longitude: -0.09, zoom: 13 };   // coordinate London city
-      const [{ latitude, longitude }, zoom] = [coordinate, 5];                                  // coordinate ISS Satellite
+    // 02 function createMap()
+    function createMap(coordinate, domElement) {
+      // const [ latitude, longitude, zoom ] = [ 0, 0, 1];                                           // coordinate initial projection
+      // const { latitude, longitude, zoom } = { latitude: 51.505, longitude: -0.09, zoom: 13 };     // coordinate London city
+      const [{ latitude, longitude }, zoom] = [coordinate, 5];                                    // coordinate ISS Satellite
       const map = L.map(domElement).setView([latitude, longitude], zoom);
-      const iconISS = L.icon({                                                                       // Add icon on the OpenStreetMap tiles
-                    iconUrl: '10-isssatellite.png',
+      const iconISS = L.icon({                                                                    // add icon on the Mapbox tiles
+                    iconUrl: '07-isssatellite.png',
                     iconSize: [50, 32],
                     iconAnchor: [25, 32]
                   });
 
-      // Add the Mapbox tiles
+      // add Mapbox tiles
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -92,21 +96,19 @@
         accessToken: 'pk.eyJ1IjoieWdhdXRvbW8iLCJhIjoiY2t6cGtqcWlmNHk0dTJ1bzEwenk1NWoweCJ9.Pm-FUxufhrQQmfX_CwV69w'
       }).addTo(map);
 
-      // Add marker and icon on the OpenStreetMap tiles
+      // add marker and icon on Mapbox tiles
       L.marker([latitude, longitude], {icon: iconISS}).addTo(map);
 
       return null;
     }
 
-    // Main Program
-    // External resource data source -- https://api.wheretheiss.at/v1/satellites/25544
-    // Reference https://wheretheiss.at
-    const urlDataSource = 'https://api.wheretheiss.at/v1/satellites/25544';
+    // 01 main program or function main() to call async function fetchSatellite()
+    const urlDataSource = 'https://api.wheretheiss.at/v1/satellites/25544';     // data source
     const domElementID = 'map_canvas';
 
     fetchSatellite(urlDataSource)
       .then(response => {
-        mapCreate(response, domElementID)
+        createMap(response, domElementID)
         document.getElementById('lat').textContent = response.latitude;
         document.getElementById('long').textContent = response.longitude;
         console.log(`processing fetch ${urlDataSource} finished`);
@@ -118,3 +120,17 @@
   </script>
 </body>
 </html>
+
+<!-- Data Sources:
+- Where the ISS at?, Real-time ISS location (https://wheretheiss.at)
+- Where the ISS at?, REST API Documentation (https://wheretheiss.at/w/developer)
+- Where the ISS at?, REST API End Point (https://api.wheretheiss.at/v1/satellites/25544) -->
+
+<!-- Libraries:
+- Leaflet JS (https://leafletjs.com/examples/quick-start)
+- Mapbox (https://www.mapbox.com)
+- Mapbox, Docs, API, Maps, Static Tiles (https://docs.mapbox.com/api/maps/static-tile) -->
+
+<!-- References:
+- Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

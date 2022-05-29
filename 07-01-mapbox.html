@@ -1,8 +1,8 @@
 <!-- /**
  * Project: Working with Data and APIs in JavaScript
- * Filename: 10-mapbox.html
+ * Filename: 07-01-mapbox.html
  * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
- * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- Temperature Chart
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 07 Mapping Geolocation with Leaflet.js- Mapbox
  * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
  * Reference Link: N/A
  * Repository: N/A
@@ -19,7 +19,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- External resource link element -- CSS- Leaflet -->
-  <!-- Reference https://leafletjs.com/examples/quick-start/ -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
 
   <!-- External resource script element -- JavaScript- Leaflet.js -->
@@ -38,15 +37,17 @@
     }
   </style>
 
-  <title>The Coding Train -- Working with Data and APIs in JavaScript- Mapbox</title>
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 07 Mapping Geolocation with Leaflet.js- Mapbox</title>
 </head>
 <body>
-  <h1>10-mapbox</h1>
+  <h1>07 Mapping Geolocation with Leaflet.js- Mapbox</h1>
+  <h2>07-01-mapbox</h2>
   <div id="map_canvas"></div>
 
   <script>
     let map = L.map('map_canvas').setView([51.505, -0.09], 13);
 
+    // add Mapbox tiles
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
@@ -60,3 +61,17 @@
   </script>
 </body>
 </html>
+
+<!-- Data Sources:
+- Where the ISS at?, Real-time ISS location (https://wheretheiss.at)
+- Where the ISS at?, REST API Documentation (https://wheretheiss.at/w/developer)
+- Where the ISS at?, REST API End Point (https://api.wheretheiss.at/v1/satellites/25544) -->
+
+<!-- Libraries:
+- Leaflet JS (https://leafletjs.com/examples/quick-start)
+- Mapbox (https://www.mapbox.com)
+- Mapbox, Docs, API, Maps, Static Tiles (https://docs.mapbox.com/api/maps/static-tile) -->
+
+<!-- References:
+- Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

@@ -39,8 +39,7 @@
         console.log(`get fetch ${fileName} response.text`);
         // console.log(data);
 
-        // const table = data.split('\n').slice(1);      // remove header or row data[0]
-        const table = data.split('\n');
+        const table = data.split('\n').slice(1);      // remove header or row data[0]
         console.log(table);
         table.forEach(row => {
           const columns = row.split(',');
