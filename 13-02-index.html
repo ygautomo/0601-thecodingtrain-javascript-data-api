@@ -1,0 +1,102 @@
+<!-- /**
+ * Project: Working with Data and APIs in JavaScript
+ * Filename: 13-02-index.html
+ * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 13 Database Query
+ * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: https://www.youtube.com/watch?v=q-lUgFxwjEM&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=13
+ * Repository: N/A
+ * 
+ * Author: Yugo Gautomo
+ * Status: Final February 01, 2022
+ */ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 13 Database Query</title>
+</head>
+<body>
+  <h1>13 Database Query</h1>
+  <h1>Data Selfie App</h1>
+  <h2>13-02-index.html</h2>
+
+  <p>
+    latitude: <span id="lat"></span>&deg;<br>
+    longitude: <span id="long"></span>&deg;<br>
+    status: <span id="status"></span><br>
+    food: <span id="foodinput"></span><br>
+  </p>
+  <p>
+    <label for="food">Enter your favorite food:</label>
+    <input type="text" id="food" name="food">
+  </p>
+  <button id="submit" onclick="btnClick()">Submit</button><br><br>
+  <div><a href="/">Main Page</a> | <a href="/13-02-query-all-link.html">Query All</a></div>
+  <p>Welcome, using Express.js</p>
+
+  <script>
+    // 00 clear the console
+    // console.clear();
+
+    /* 99 main program or function btnClick() */
+    console.log("99 main program or function btnClick()");
+    // const coordinate = { latitude: -6.557, longitude: 106.782};     // coordinate current location
+
+    function btnClick() {
+    // document.getElementById('submit').addEventListener('click', (event) => {
+      if ('geolocation' in navigator) {
+        console.log("geolocation is available");
+        navigator.geolocation.getCurrentPosition(async (position) => {
+          const latitude = position.coords.latitude;
+          const longitude =  position.coords.longitude;
+          const strFood = document.getElementById('food').value;
+
+          console.log(position);
+          console.log(latitude);
+          console.log(longitude);
+          console.log(strFood);
+          document.getElementById('lat').textContent = latitude;
+          document.getElementById('long').textContent = longitude;
+          document.getElementById('foodinput').textContent = strFood;
+          document.getElementById('status').textContent = "Web API Geolocation is available";
+
+          const data = { latitude, longitude, strFood };
+          const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+          }
+          const response = await fetch('/api', options);
+          const jsonData = await response.json();
+
+          console.log(jsonData);
+        });
+      } else {
+        console.log("geolocation is not available");
+        document.getElementById('status').textContent = "Web API Geolocation is not available";
+      };
+
+      return;
+    };
+  </script>
+</body>
+</html>
+
+<!-- /* References: */
+- Express.js (https://expressjs.com)
+- Express.js, express.json() (https://expressjs.com/en/4x/api.html#express.json)
+- Express.js, Hello World Example (https://expressjs.com/en/starter/hello-world.html)
+- Express.js, Serving Static Files in Express (https://expressjs.com/en/starter/static-files.html)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API, Using the Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+- Mozilla Developer Network (MDN), References, Web APIs, Geolocation API (https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+- Mozilla Developer Network (MDN), References, Web APIs, Request, Request.method (https://developer.mozilla.org/en-US/docs/Web/API/Request/method)
+- NeDB (https://dbdb.io/db/nedb)
+- NeDB (https://github.com/louischatriot/nedb)
+- Node.js v18.3.0 Documentation, File System (https://nodejs.org/api/fs.html) -->

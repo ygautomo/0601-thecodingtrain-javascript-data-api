@@ -1,0 +1,88 @@
+<!-- /**
+ * Project: Working with Data and APIs in JavaScript
+ * Filename: 10-01-geolocation.html
+ * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 10 Geolocation Web API
+ * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: https://www.youtube.com/watch?v=3ls013DBcww&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=10
+ * Repository: N/A
+ * 
+ * Author: Yugo Gautomo
+ * Status: Final February 01, 2022
+ */ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- External resource link element -- CSS- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+
+  <!-- External resource script element -- JavaScript- Leaflet.js -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #canvas_map {
+      height: 400px;
+    }
+    .leaflet-container {
+      height: 400px;
+      width: 600px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 10 Geolocation Web API</title>
+</head>
+<body>
+  <h1>10 Geolocation Web API</h1>
+  <h1>Data Selfie App</h1>
+  <h2>10-01-geolocation.html</h2>
+
+  <p>
+    latitude: <span id="lat"></span>&deg;<br>
+    longitude: <span id="long"></span>&deg;<br>
+    status: <span id="status"></span><br>
+  </p>
+  <button id="geolocate">geolocate</button><br><br>
+  <div><a href="/10-01-geolocation-link.html">Main Page</a> | <a href="/10-01-geolocation-mapbox-link.html">Display on Mapbox</a> | <a href="/10-01-geolocation-osm-link.html">Display on OpenStreetMap</a></div>
+  <div id="canvas_map"></div>
+
+  <script>
+    // 00 clear the console
+    // console.clear();
+
+    // 01 geolocate button onclick() and check web api geolocation
+    document.getElementById('geolocate').addEventListener('click', (event) => {
+      if ('geolocation' in navigator) {
+        console.log("geolocation is available");
+        navigator.geolocation.getCurrentPosition((position) => {
+          console.log(position);
+          console.log(position.coords.latitude);
+          console.log(position.coords.longitude);
+          document.getElementById('lat').textContent = position.coords.latitude;
+          document.getElementById('long').textContent = position.coords.longitude;
+          document.getElementById('status').textContent = "Web API Geolocation is available";
+        });
+      } else {
+        console.log("geolocation is not available");
+        document.getElementById('status').textContent = "Web API Geolocation is not available";
+      };
+    });
+  </script>
+</body>
+</html>
+
+<!-- /* References: */
+- Express.js (https://expressjs.com)
+- Express.js, Hello World Example (https://expressjs.com/en/starter/hello-world.html)
+- Express.js, Serving Static Files in Express (https://expressjs.com/en/starter/static-files.html)
+- Mozilla Developer Network (MDN), References, Web APIs, Geolocation API (https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) -->

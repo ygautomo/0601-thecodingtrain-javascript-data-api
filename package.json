@@ -1,0 +1,26 @@
+{
+  "name": "58-codingtrain-javascript-api",
+  "version": "1.0.0",
+  "description": "Course: 01 The Coding Train -- Working with Data and APIs in JavaScript",
+  "main": "09-01-helloworld.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ygautomo/58-codingtrain-javascript-api-ps.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Yugo Gautomo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ygautomo/58-codingtrain-javascript-api-ps/issues"
+  },
+  "homepage": "https://github.com/ygautomo/58-codingtrain-javascript-api-ps#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nedb": "^1.8.0"
+  }
+}

@@ -1,0 +1,155 @@
+<!-- /**
+ * Project: Working with Data and APIs in JavaScript
+ * Filename: 08-01-satellite-osm-interval.html
+ * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 08 Refreshing Data with setInterval()- ISS Satellite Tracking with OpenStreetMap
+ * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: https://www.youtube.com/watch?v=jKQUHGpOHqg&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=8
+ * Repository: N/A
+ * 
+ * Author: Yugo Gautomo
+ * Status: Final February 01, 2022
+ */ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- External resource link element -- CSS- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+
+  <!-- External resource script element -- JavaScript- Leaflet.js -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #canvas_map {
+      height: 280px;
+    }
+    .leaflet-container {
+      height: 400px;
+      width: 600px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+
+  <title>08 Refreshing Data with setInterval()- ISS Satellite Tracking with OpenStreetMap</title>
+</head>
+<body>
+  <h1>08 Refreshing Data with setInterval()- ISS Satellite Tracking with OpenStreetMap</h1>
+  <h1>Where the ISS Satellite</h1>
+  <h2>08-01-satellite-osm-interval.html</h2>
+
+  <p>
+    latitude: <span id="lat"></span>&deg;<br>
+    longitude: <span id="long"></span>&deg;<br>
+    altitude: <span id="alt"></span>km<br>
+  </p>
+  <div id="canvas_map"></div>
+
+  <script>
+    // 00 clear the console
+    // console.clear();
+
+    // 01 async function fetchSatellite()
+    async function fetchSatellite(urlLink, zoomInt, mapObject, markerObject) {
+      const response = await fetch(urlLink);
+      const data = await response.json();
+      const {latitude, longitude, altitude} = data;
+
+      console.log(`get fetch ${urlLink} response`);
+      console.log(response);
+      if (!response.ok) {
+        console.log(`catch fecth ${urlLink} response error!`, response.status, response.statusText);
+        throw new Error('Network response was not OK');
+      };
+
+      console.log(`get fetch ${urlLink} response.text`);
+      console.log(data);
+      console.log(`latitude: ${latitude}, longitude: ${longitude}, altitude: ${altitude}`);
+
+      document.getElementById('lat').textContent = latitude.toFixed(2);
+      document.getElementById('long').textContent = longitude.toFixed(2);
+      document.getElementById('alt').textContent = altitude.toFixed(2);
+      setMapView({ latitude, longitude }, zoomInt, mapObject, markerObject);
+
+      return;
+    };
+
+    // 02 function createMap()
+    function createMap(coordinate, zoomInt, domElement) {
+      // const [ latitude, longitude, zoom ] = [ 0, 0, 1];                                           // coordinate initial projection
+      // const { latitude, longitude, zoom } = { latitude: 51.505, longitude: -0.09, zoom: 13 };     // coordinate London city
+      const [{ latitude, longitude }, zoom] = [coordinate, zoomInt];                              // coordinate ISS Satellite
+
+      // create icon, map & marker
+      // const map = L.map(domElement).setView([latitude, longitude], zoom);
+      const map = L.map(domElement, {
+        center: [latitude, longitude],
+        zoom: zoom
+      });
+      const iconISS = L.icon({                                                                    // add icon on OpenStreetMap tiles
+        iconUrl: '07-isssatellite.png',
+        iconSize: [50, 32],
+        iconAnchor: [25, 32]
+      });
+      const marker = L.marker([latitude, longitude], {icon: iconISS}).addTo(map);
+
+      // add OpenStreetMap tileLayer, variable {z}/{x}/{y} are ommited
+      const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+        maxZoom: 18,
+      }).addTo(map);
+
+      return { map, marker };
+    };
+
+    // 03 function setMapView()
+    function setMapView(coordinate, zoomInt, mapObject, markerObject) {
+      const [{ latitude, longitude }, zoom] = [coordinate, zoomInt];                              // coordinate ISS Satellite
+      mapObject.setView([latitude, longitude], zoom);
+      markerObject.setLatLng([latitude, longitude]);
+
+      return null;
+    };
+
+    /* 01 main program or function main() to call async function fetchSatellite() */
+    const urlDataSource = 'https://api.wheretheiss.at/v1/satellites/25544';                       // data source
+    const domElementID = 'canvas_map';
+    const zoomInt = 5;
+    const { map, marker } = createMap({latitude: 0, longitude: 0}, zoomInt, domElementID);
+
+    console.log("01 main program or function main() to call async function fetchSatellite()");
+    fetchSatellite(urlDataSource, zoomInt, map, marker)
+      .then(response => {
+        console.log(`processing fetch ${urlDataSource} finished`);
+      })
+      .catch(error => {
+        console.log("catch fecth process error!");
+        console.error(error);
+      });
+
+    setInterval(fetchSatellite, 5000, urlDataSource, zoomInt, map, marker);
+  </script>
+</body>
+</html>
+
+<!-- /* Data Sources: */
+- Where the ISS at?, Real-time ISS location (https://wheretheiss.at)
+- Where the ISS at?, REST API Documentation (https://wheretheiss.at/w/developer)
+- Where the ISS at?, REST API End Point (https://api.wheretheiss.at/v1/satellites/25544) -->
+
+<!-- /* Libraries: */
+- Leaflet JS (https://leafletjs.com/examples/quick-start)
+- OpenStreetMap (https://www.openstreetmap.org) -->
+
+<!-- /* References: */
+- Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

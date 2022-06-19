@@ -28,7 +28,7 @@
     // 00 clear the console
     // console.clear();
 
-    // 01 web api function fetch()
+    // web api function fetch()
     // const fileImage = '03-rainbow-error.jpg';
     const fileImage = '03-rainbow.jpg';
 
@@ -45,7 +45,7 @@
         }
       })
       .then(blob => {
-        // document.getElementById('rainbow_error').src = URL.createObjectURL(blob);        
+        // document.getElementById('rainbow_error').src = URL.createObjectURL(blob);
         document.getElementById('rainbow').src = URL.createObjectURL(blob);
         console.log(`get fetch ${fileImage} response.blob`);
         console.log(blob);
@@ -58,6 +58,6 @@
 </body>
 </html>
 
-<!-- References:
+<!-- /* References: */
 - Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
 - Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

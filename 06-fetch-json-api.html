@@ -45,25 +45,25 @@
         console.log(`get fetch ${urlLink} response.text`);
         // console.log(data);
         console.log(`latitude: ${latitude}, longitude: ${longitude}`);
-      
+
         return { latitude, longitude };
       } else {
         console.log(`catch fecth ${urlLink} response error!`, response.status, response.statusText);
         throw new Error('Network response was not OK');
-      }
+      };
 
-      return null;
-    }
+      return;
+    };
 
-    // 01 main program or function main() to call async function fetchSatellite()
+    /* 01 main program or function main() to call async function fetchSatellite() */
     const urlDataSource = 'https://api.wheretheiss.at/v1/satellites/25544';     // data source
     // let positionISS = {
     //   lat: -45,
     //   long: 112
     // };
 
+    console.log("01 main program or function main() to call async function fetchSatellite()");
     // console.log(positionISS);
-
     fetchSatellite(urlDataSource)
       .then(response => {
         document.getElementById('lat').textContent = response.latitude;
@@ -78,11 +78,11 @@
 </body>
 </html>
 
-<!-- Data Sources:
+<!-- /* Data Sources: */
 - Where the ISS at?, Real-time ISS location (https://wheretheiss.at)
 - Where the ISS at?, REST API Documentation (https://wheretheiss.at/w/developer)
 - Where the ISS at?, REST API End Point (https://api.wheretheiss.at/v1/satellites/25544) -->
 
-<!-- References:
+<!-- /* References: */
 - Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
 - Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

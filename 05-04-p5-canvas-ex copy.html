@@ -1,0 +1,89 @@
+<!-- /**
+ * Project: Working with Data and APIs in JavaScript
+ * Filename: 005-04-p5-canvas-ex.html
+ * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 05 Graphing with p5.js- Exercise Canvas
+ * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: https://www.youtube.com/watch?v=5-ptp9tRApM&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=5
+ * Repository: N/A
+ * 
+ * Author: Yugo Gautomo
+ * Status: Final February 01, 2022
+ */ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- External resource link element -- JavaScript- p5.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 05 Graphing with p5.js- Exercise Canvas</title>
+</head>
+<body>
+  <h1>05 Graphing with p5.js- Exercise Canvas</h1>
+  <h2>05-04-p5-canvas-ex.html</h2>
+  <!-- <p id="data"></p> -->
+  <!-- <canvas id="chart" width="800" height="400"></canvas> -->
+
+  <script>
+    // 00 clear the console
+    // console.clear();
+
+    // 01 function draw() for libraries p5.js exercise 01
+    function exercise_01() {
+      function setup() {
+        createCanvas(800, 400);
+        return;
+      };
+
+      function draw() { 
+        console.log("funtion exercise_01() inside");
+        ellipse(50,50,80,80);
+        ellipse(200,200,100,80);
+        return;
+      }
+
+      console.log("funtion exercise_01()");
+      setup();
+      draw();
+  
+      return;
+    };
+
+    
+    // // 03 function draw() for libraries p5.js exercise 02
+    // function draw() { 
+    //   background(220,0,0);
+    //   ellipse(50,50,80,80);
+    //   fill(200,50,8);
+    //   ellipse(50,50,20,20);
+    //   fill(20,250,8);
+    //   ellipse(250,250,20,20);
+    //   fill(20,150,250);
+    //   ellipse(450,450,20,20);
+
+    //   return;
+    // }
+
+    /* 99 main program or function main() */
+    console.log("99 main program or function main()");
+    exercise_01();
+  </script>
+</body>
+</html>
+
+<!-- /* Data Sources: */
+- National Aeronautics and Space Administration (NASA), GISS Surface Temperature Analysis (https://data.giss.nasa.gov/gistemp)
+- National Aeronautics and Space Administration (NASA), Earth Observatory (https://earthobservatory.nasa.gov/world-of-change/global-temperatures) -->
+
+<!-- /* Libraries:*/
+- Chart.js (https://www.chartjs.org) -->
+
+<!-- /* References: */
+- Chart.js, Documentation (https://www.chartjs.org/docs/latest)
+- Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

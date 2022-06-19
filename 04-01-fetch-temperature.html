@@ -47,22 +47,23 @@
           const temp = columns[1]
 
           console.log(year, temp);
-        })
+        });
 
         return data;
       } else {
         console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
         throw new Error('Network response was not OK');
-      }
+      };
 
-      return null;
-    }
+      return;
+    };
 
-    // 01 main program or function main() to call async function fetchCSVData()
+    /* 01 main program or function main() to call async function fetchCSVData() */
     // const fileCSV = '04-temperature-test-error.csv';
     // const fileCSV = '04-temperature-test.csv';
-    const fileCSV = '04-temperature.csv';     // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
+    const fileCSV = '04-temperature.csv';             // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
 
+    console.log("01 main program or function main() to call async function fetchCSVData()");
     console.log("fecth the text file", fileCSV);
     fetchCSVData(fileCSV)
       .then(data => {
@@ -78,10 +79,10 @@
 </body>
 </html>
 
-<!-- Data Sources:
+<!-- /* Data Sources: */
 - National Aeronautics and Space Administration (NASA), GISS Surface Temperature Analysis (https://data.giss.nasa.gov/gistemp)
 - National Aeronautics and Space Administration (NASA), Earth Observatory (https://earthobservatory.nasa.gov/world-of-change/global-temperatures) -->
 
-<!-- References:
+<!-- /* References: */
 - Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
 - Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

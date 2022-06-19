@@ -1,0 +1,109 @@
+<!-- /**
+ * Project: Working with Data and APIs in JavaScript
+ * Filename: 07-01-openstreetmap.html
+ * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 07 Mapping Geolocation with Leaflet.js- OpenStreetMap
+ * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: N/A
+ * Repository: N/A
+ * 
+ * Author: Yugo Gautomo
+ * Status: Final February 01, 2022
+ */ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- External resource link element -- CSS- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+
+  <!-- External resource script element -- JavaScript- Leaflet.js -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #canvas_map {
+      height: 280px;
+    }
+    .leaflet-container {
+      height: 400px;
+      width: 600px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 07 Mapping Geolocation with Leaflet.js- OpenStreetMap</title>
+</head>
+<body>
+  <h1>07 Mapping Geolocation with Leaflet.js- OpenStreetMap</h1>
+  <h2>07-01-openstreetmap.html</h2>
+
+  <p>
+    latitude: <span id="lat"></span><br>
+    longitude: <span id="long"></span><br>
+  </p>
+  <div id="canvas_map"></div>
+
+  <script>
+    // 00 clear the console
+    // console.clear();
+
+    // 01 function createMap()
+    function createMap(coordinate, zoomInt, domElement) {
+      const { latitude, longitude, zoom } = { latitude: -6.557, longitude: 106.782, zoom: 13 };     // coordinate current location
+
+      // create map & marker
+      // const map = L.map(domElementID).setView([latitude, longitude], zoom);
+      const map = L.map(domElementID, {
+        center: [latitude, longitude],
+        zoom: zoom
+      });
+      L.marker([latitude, longitude]).addTo(map);
+
+      // add description
+      document.getElementById('lat').textContent = latitude;
+      document.getElementById('long').textContent = longitude;
+
+      // add OpenStreetMap tileLayer, variable {z}/{x}/{y} are ommited
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+        maxZoom: 18,
+      }).addTo(map);
+
+      return;
+    };
+
+    /* 01 main program or function main() to call function createMap() */
+    // const coordinate = { latitude: 0, longitude: 0};                // coordinate initial projection
+    // const coordinate = { latitude: 51.505, longitude: -0.09};       // coordinate London city
+    const coordinate = { latitude: -6.557, longitude: 106.782};     // coordinate current location
+    const domElementID = 'canvas_map';
+    const zoomInt = 13;
+ 
+    console.log("01 main program or function main() to call function createMap()");
+    createMap(coordinate, zoomInt, domElementID);
+    console.log("Map displayed");
+  </script>
+</body>
+</html>
+
+<!-- /* Data Sources: */
+- Where the ISS at?, Real-time ISS location (https://wheretheiss.at)
+- Where the ISS at?, REST API Documentation (https://wheretheiss.at/w/developer)
+- Where the ISS at?, REST API End Point (https://api.wheretheiss.at/v1/satellites/25544) -->
+
+<!-- /* Libraries: */
+- Leaflet JS (https://leafletjs.com/examples/quick-start)
+- OpenStreetMap (https://www.openstreetmap.org) -->
+
+<!-- /* References: */
+- Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->

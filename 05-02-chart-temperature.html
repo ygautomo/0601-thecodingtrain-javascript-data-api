@@ -51,7 +51,7 @@
         table.forEach(row => {
           const columns = row.split(',');
           const year = columns[0];
-          const temp = columns[1]
+          const temp = columns[1];
 
           xLabel.push(year);
           yTemps.push(parseFloat(temp) + 14);
@@ -62,21 +62,21 @@
       } else {
         console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
         throw new Error('Network response was not OK');
-      }
+      };
 
-      return null;
-    }
+      return;
+    };
 
     // 02 async function createChart()
     async function createChart(fileName) {
       const data = await fetchCSVData(fileName);
-      const ctx = document.getElementById('chart').getContext('2d');
-      const myChart = new Chart(ctx, {
+      const elChart = document.getElementById('chart').getContext('2d');
+      const myChart = new Chart(elChart, {
         type: 'line',
         data: {
           labels: data.xLabel,
           datasets: [{
-            label: 'Combined Land-Surface Air and Sea-Surface Water Temperature °C',
+            label: "Combined Land-Surface Air and Sea-Surface Water Temperature °C (Zonal Annual Means)",
             data: data.yTemps,
             fill: false,
             backgroundColor: ['rgba(255, 99, 132, 0.2)'],
@@ -97,14 +97,17 @@
             }
           }
         }
-      })
-    }
+      });
 
-    // 02 main program or function main() to call function createChart()
+      return;
+    };
+
+    /* 02 main program or function main() to call function createChart() */
     // const fileCSV = '04-temperature-test-error.csv';
     // const fileCSV = '04-temperature-test.csv';
-    const fileCSV = '04-temperature.csv';     // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
+    const fileCSV = '04-temperature.csv';             // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
 
+    console.log("02 main program or function main() to call function createChart()");
     console.log("create chart & fecth the text file", fileCSV);
     createChart(fileCSV)
       .then(response => {
@@ -118,13 +121,14 @@
 </body>
 </html>
 
-<!-- Data Sources:
+<!-- /* Data Sources: */
 - National Aeronautics and Space Administration (NASA), GISS Surface Temperature Analysis (https://data.giss.nasa.gov/gistemp)
 - National Aeronautics and Space Administration (NASA), Earth Observatory (https://earthobservatory.nasa.gov/world-of-change/global-temperatures) -->
 
-<!-- Libraries:
-- Chart.js (https://www.chartjs.org/docs/latest) -->
+<!-- /* Libraries: */
+- Chart.js (https://www.chartjs.org) -->
 
-<!-- References:
+<!-- /* References: */
+- Chart.js, Documentation (https://www.chartjs.org/docs/latest)
 - Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
 - Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) -->
