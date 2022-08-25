@@ -8,7 +8,7 @@
  * Repository: N/A
  * 
  * Author: Yugo Gautomo
- * Status: Final February 01, 2022
+ * Status: Final August 01, 2022
  */
 
 // 00 variable declaration and clear the console
