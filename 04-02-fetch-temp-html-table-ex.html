@@ -1,14 +1,14 @@
 <!-- /**
- * Project: Working with Data and APIs in JavaScript
+ * Project: 01 The Coding Train -- Working with Data and APIs in JavaScript
  * Filename: 04-02-fetch-temp-html-table-ex.html
  * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
- * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 04 Tabular Data- Exercise Temperature HTML Table
- * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
- * Reference Link: N/A
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 04 Tabular Data- Temperature HTML Table- Exercise
+ * Directory: D:\06 Training Course\06 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: https://www.youtube.com/watch?v=RfMkdvN-23o&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=4
  * Repository: N/A
  * 
  * Author: Yugo Gautomo
- * Status: Final February 01, 2022
+ * Status: Final August 01, 2022
  */ -->
 
 <!DOCTYPE html>
@@ -17,10 +17,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 04 Tabular Data- Exercise Temperature HTML Table</title>
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 04 Tabular Data- Temperature HTML Table- Exercise</title>
 </head>
 <body>
-  <h1>04 Tabular Data- Exercise Temperature HTML Table</h1>
+  <h1>04 Tabular Data- Temperature HTML Table- Exercise</h1>
   <h2>04-02-fetch-temp-html-table-ex.html</h2>
   <table id="table_temperature"></table>
 
@@ -39,9 +39,9 @@
         console.log(`get fetch ${fileName} response.text`);
         // console.log(data);
 
-        const table = data.split('\n').slice(1);      // remove header or row data[0]
-        console.log(table);
-        table.forEach(row => {
+        const tableData = data.split('\n').slice(1);    // remove header or row data[0]
+        console.log(tableData);
+        tableData.forEach(row => {
           const columns = row.split(',');
           const year = columns[0];
           const temp = columns[1]
@@ -49,7 +49,7 @@
           console.log(year, temp);
         });
 
-        return table;
+        return tableData;
       } else {
         console.log(`catch fecth ${fileName} response error!`, response.status, response.statusText);
         throw new Error('Network response was not OK');
@@ -112,14 +112,14 @@
       return;
     };
 
-    /* 99 main program or function main() */
+    /* 00 main program or function main() */
     // const fileCSV = '04-temperature-test-error.csv';
     // const fileCSV = '04-temperature-test.csv';
-    const fileCSV = '04-temperature.csv';             // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
+    const fileCSV = '04-temperature.csv';               // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
     const domTableID = 'table_temperature';
 
     createDOMTable(domTableID);
-    console.log("99 main program or function main()");
+    console.log("00 main program or function main()");
     console.log("table created & fecth the text file", fileCSV);
     fetchCSVData(fileCSV)
       .then(data => {
@@ -133,6 +133,9 @@
   </script>
 </body>
 </html>
+
+<!-- /* Running Command */
+-- Visual Studio Code Extension -- Live Server -->
 
 <!-- /* Data Sources: */
 - National Aeronautics and Space Administration (NASA), GISS Surface Temperature Analysis (https://data.giss.nasa.gov/gistemp)

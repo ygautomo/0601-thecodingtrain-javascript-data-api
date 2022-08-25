@@ -1,14 +1,14 @@
 <!-- /**
- * Project: Working with Data and APIs in JavaScript
- * Filename: 05-02-chart-temperature.html
+ * Project: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Filename: 05-02-chartjs-temperature.html
  * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
  * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 05 Graphing with Chart.js- Chart Temperature
- * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Directory: D:\06 Training Course\06 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
  * Reference Link: https://www.youtube.com/watch?v=5-ptp9tRApM&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=5
  * Repository: N/A
  * 
  * Author: Yugo Gautomo
- * Status: Final February 01, 2022
+ * Status: Final August 01, 2022
  */ -->
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
 </head>
 <body>
   <h1>05 Graphing with Chart.js- Chart Temperature</h1>
-  <h2>05-02-chart-temperature.html</h2>
+  <h2>05-02-chartjs-temperature.html</h2>
   <!-- <p id="data"></p> -->
   <canvas id="chart" width="800" height="400"></canvas>
 
@@ -102,12 +102,12 @@
       return;
     };
 
-    /* 02 main program or function main() to call function createChart() */
+    /* 00 main program or function main() */
     // const fileCSV = '04-temperature-test-error.csv';
     // const fileCSV = '04-temperature-test.csv';
     const fileCSV = '04-temperature.csv';             // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
 
-    console.log("02 main program or function main() to call function createChart()");
+    console.log("00 main program or function main()");
     console.log("create chart & fecth the text file", fileCSV);
     createChart(fileCSV)
       .then(response => {
@@ -120,6 +120,9 @@
   </script>
 </body>
 </html>
+
+<!-- /* Running Command */
+-- Visual Studio Code Extension -- Live Server -->
 
 <!-- /* Data Sources: */
 - National Aeronautics and Space Administration (NASA), GISS Surface Temperature Analysis (https://data.giss.nasa.gov/gistemp)

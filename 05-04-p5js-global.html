@@ -1,0 +1,716 @@
+<!-- /**
+ * Project: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Filename: 05-04-p5js-global.html
+ * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 05 Graphing with p5.js- Canvas Global Mode- Example
+ * Directory: D:\06 Training Course\06 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Reference Link: https://www.youtube.com/watch?v=5-ptp9tRApM&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=5
+ * Repository: N/A
+ * 
+ * Author: Yugo Gautomo
+ * Status: Final August 01, 2022
+ */ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- script element -- JavaScript- p5.js (https://p5js.org/get-started) -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+
+  <!-- script element -- JavaScript- p5.js (https://cdnjs.com/libraries/p5.js) -->
+  <!-- 13 example visualizing data saved in a csv file- create data visualization (bar chart) )from array csv data within canvas using libraries p5.js -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.dom.min.js"></script>   // not found-->
+
+  <!-- style information element -- 12 example -->
+  <!-- 12 example visualizing an array set of data- create data visualization (bar chart) from array data within canvas using libraries p5.js -->
+  <!-- <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+  </style> -->
+
+  <!-- style information element -- 13 example -->
+  <!-- 13 example visualizing data saved in a csv file- create data visualization (bar chart) from array csv data within canvas using libraries p5.js -->
+  <!-- <style>
+    html, body {
+      margin: 100;
+      padding: 0;
+    }
+    canvas {
+      display: block;
+    }
+  </style> -->
+
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 05 Graphing with p5.js- Canvas Global Mode- Example</title>
+</head>
+<body>
+  <h1>05 Graphing with p5.js- Canvas Global Mode- Example</h1>
+  <h2>05-04-p5js-global.html</h2>
+  <p id="example">id-example text</p>
+  <p><a id="link" href="" rel="noopener noreferrer" style="white-space: pre-line" target="_blank">id-link text</a></p>
+  <!-- <p id="data"></p> -->
+  <!-- <canvas id="chart" width="800" height="400"></canvas> -->
+
+  <script>
+    // 00 clear the console & add style attribute on link DOM element
+    // console.clear();
+    // document.getElementById('link').setAttribute('style', 'white-space: pre-line');
+
+    // 01 example create canvas using libraries p5.js
+    // references: https://p5js.org/get-started
+    // console.log("01 example create canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "01 example create canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/get-started";
+    // document.getElementById('link').href= "https://p5js.org/get-started";
+
+    // 01 p5.js structure function setup()
+    function setup() {
+      createCanvas(800, 400);
+
+      return;
+    };
+
+    // 02 p5.js structure function draw()
+    function draw() {
+      background(220);
+
+      return;
+    };
+
+    // 02 example create ecllipse object within canvas using libraries p5.js
+    // references: https://p5js.org/get-started
+    // console.log("02 example create ecllipse object within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "02 example create ecllipse object within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/get-started";
+    // document.getElementById('link').href= "https://p5js.org/get-started";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 400);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+    //   background(220);
+    //   ellipse(50, 50, 80, 80);
+    //   // ellipse(200, 200, 100, 80);
+
+    //   return;
+    // };
+
+    // 03 example create ecllipse object with mouse click within canvas using libraries p5.js
+    // references: https://p5js.org/get-started
+    // console.log("03 example create ecllipse object with mouse click within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "03 example create ecllipse object with mouse click within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/get-started";
+    // document.getElementById('link').href= "https://p5js.org/get-started";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 400);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+    //   if (mouseIsPressed) {
+    //     fill(0);
+    //   } else {
+    //     fill(255);
+    //   };
+    //   ellipse(mouseX, mouseY, 80, 80);
+
+    //   return;
+    // };
+
+    // 04 example hello world by create canvas using libraries p5.js
+    // references: https://p5js.org/learn/p5-screen-reader.html
+    // console.log("04 example hello world by create canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "04 example hello world by create canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/learn/p5-screen-reader.html";
+    // document.getElementById('link').href= "https://p5js.org/learn/p5-screen-reader.html";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 400);
+
+    //   return;
+    // };
+
+    // 05 example create basic shapes within canvas using libraries p5.js
+    // references: https://p5js.org/learn/p5-screen-reader.html
+    // console.log("05 example create basic shapes within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "05 example create basic shapes within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/learn/p5-screen-reader.html";
+    // document.getElementById('link').href= "https://p5js.org/learn/p5-screen-reader.html";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 400);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+    //   ellipse(50, 50, 80, 20);
+
+    //   return;
+    // };
+
+    // 06 example adding color to created basic shapes within canvas using libraries p5.js
+    // references: https://p5js.org/learn/p5-screen-reader.html
+    // console.log("06 example adding color to created basic shapes within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "06 example adding color to created basic shapes within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/learn/p5-screen-reader.html";
+    // document.getElementById('link').href= "https://p5js.org/learn/p5-screen-reader.html";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(500, 500);
+    //   background(255, 0, 0);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+    //   fill(200, 50, 8);
+    //   ellipse(50, 50, 20, 20);
+    //   fill(20, 250, 8);
+    //   ellipse(250, 250, 20, 20);
+    //   fill(20, 150, 250);
+    //   ellipse(450, 450, 20, 20);
+
+    //   return;
+    // };
+
+    // 07 example adding text within canvas using libraries p5.js
+    // references: https://p5js.org/learn/p5-screen-reader.html
+    // console.log("07 example adding text within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "07 example adding text within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/learn/p5-screen-reader.html";
+    // document.getElementById('link').href= "https://p5js.org/learn/p5-screen-reader.html";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 400);
+    //   background(200);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+    //   fill(255,0,0);
+    //   text("Hello World!", 50, 50);
+    //   text("This is using p5.js libary", 50, 80);
+
+    //   return;
+    // };
+
+    // 08 example create bar graph within canvas using libraries p5.js
+    // references: https://p5js.org/learn/p5-screen-reader.html
+    // console.log("08 example create bar graph within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "08 example create bar graph within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/learn/p5-screen-reader.html";
+    // document.getElementById('link').href= "https://p5js.org/learn/p5-screen-reader.html";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 500);
+    //   fill(255,0,0);
+	  //   rect(0, 0, 260, 50);
+    //   text("Dogs - 260", 0, 75);
+    //   rect(0, 100, 300, 50);
+    //   text("Cats - 300", 0, 175);
+    //   rect(0, 200, 100, 50);
+    //   text("Hamsters - 100", 0, 275);
+    //   rect(0, 300, 50, 50);
+    //   text("Rabbits - 50", 0, 375);
+    //   rect(0, 400, 10, 50);
+    //   text("Spiders - 10", 0, 475);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+
+    //   return;
+    // };
+
+    // 09 example create bar graph with custom color within canvas using libraries p5.js
+    // references: https://p5js.org/learn/p5-screen-reader.html
+    // console.log("09 example create bar graph with custom color within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "09 example create bar graph with custom color within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/learn/p5-screen-reader.html";
+    // document.getElementById('link').href= "https://p5js.org/learn/p5-screen-reader.html";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 500);
+    //   fill(255, 0, 0);
+    //   rect(0, 0, 260, 50);
+    //   text("Dogs - 260", 0, 75);
+    //   fill(0, 255, 0);
+    //   rect(0, 100, 300, 50);
+    //   text("Cats - 300", 0, 175);
+    //   fill(0, 0, 255);
+    //   rect(0, 200, 100, 50);
+    //   text("Hamsters - 100", 0, 275);
+    //   fill(200, 100, 0);
+    //   rect(0, 300, 50, 50);
+    //   text("Rabbits - 50", 0, 375);
+    //   fill(0, 200, 200);
+    //   rect(0, 400, 10, 50);
+    //   text("Spiders - 10", 0, 475);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+
+    //   return;
+    // };
+
+    // 10 example getting started with p5.js- create rectangular within canvas using libraries p5.js
+    // references: https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js
+    // console.log("10 example getting started with p5.js- create rectangular within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "10 example getting started with p5.js- create rectangular within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js";
+    // document.getElementById('link').href= "https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(400, 300);
+    //   background(200);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+    //   rectMode(CENTER);
+    //   fill(27, 0, 179);
+    //   stroke(0, 107, 179);
+    //   strokeWeight(3);
+    //   rect(200, 150, 150, 150);
+
+    //   return;
+    // };
+
+    // 11 example getting started with p5.js- create line vector within canvas using libraries p5.js
+    // references: https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js
+    // console.log("11 example getting started with p5.js- create line vector within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "11 example getting started with p5.js- create line vector within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js";
+    // document.getElementById('link').href= "https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 400);
+    //   background(200);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+    //   const one = createVector(50, 300);
+    //   const two = createVector(500, 50);
+
+    //   line(one.x, one.y, two.x, two.y);
+
+    //   return;
+    // };
+
+    // 12 example visualizing an array set of data- create data visualization (bar chart) from array data within canvas using libraries p5.js
+    // references: https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js
+    // console.log("12 example visualizing an array set of data- create data visualization (bar chart) from array data within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "12 example visualizing an array set of data- create data visualization (bar chart) from array data within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js";
+    // document.getElementById('link').href= "https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js";
+
+    // let values = ['40', '153', '189', '109', '287', '69', '19', '163'];
+    // let lerpValues = [];
+    // let index = 0;
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(windowWidth, windowHeight);
+
+    //   // initialization of the table of intermediate values (all to zero)
+    //   for (let i = 0; i < values.length; i++) {
+    //     lerpValues.push(0);
+    //   };
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+    //   background(255);
+    //   noStroke();
+    //   fill(0, 200, 220);
+
+    //   for (i = 0; i < index; i++) {
+    //     let posx = map(i, 0, values.length, 40, width);
+    //     lerpValues[i] = lerp(lerpValues[i], values[i], 0.2);
+    //     rect(posx, height-20, 40, -lerpValues[i]);
+    //     textAlign(CENTER);
+    //     text(round(lerpValues[i]), posx+20, height-lerpValues[i]-30);
+    //   };
+
+    //   return;
+    // };
+
+    // 03 function setInterval()
+    // setInterval(function() {
+    //   if (index < values.length) {
+    //     index += 1;
+    //   };
+
+    //   return;
+    // }, 100);
+
+    // 04 p5.js environment function windowResized()
+    // function windowResized() {
+    //   resizeCanvas(windowWidth, windowHeight);
+
+    // return;
+    // };
+
+    // 13 example visualizing data saved in a csv file- create data visualization (bar chart) from array csv data within canvas using libraries p5.js
+    // references: https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js
+    // console.log("13 example visualizing data saved in a csv file- create data visualization (bar chart) from array csv data within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = '13 example visualizing data saved in a csv file- create data visualization (bar chart) from array csv data within canvas using libraries p5.js';
+    // document.getElementById('link').textContent= "reference: \r\n https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js";
+    // document.getElementById('link').href= "https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js";
+
+    // const fileCSV = '05-geographic-mass-component.csv';   // data source https://github.com/JuliusGikonyoNyambura/Visualizing-CSV-using-P5.js
+    // let data;
+    // let values
+    // let labels;
+    // let t = 0;
+
+    // 01 p5.js structure function preload()
+    // function preload() {
+    //   tableData = loadTable(fileCSV, 'csv', 'header');
+
+    // return;
+    // };
+
+    // 02 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 600);
+    //   // give the name of the columns
+    //   // give the number of lines
+    //   // give the values of the Mass (Tt) column
+    //   values = tableData.getColumn("Mass (Tt)");
+    //   labels = tableData.getColumn("Component");
+
+    // return;
+    // };
+
+    // 03 p5.js structure function draw()
+    // function draw() {
+    //   background(255);
+    //   for (let i = 0; i < values.length; i++) {
+    //     rect(i * 40, height - 1, 40, -values[i] * t);
+    //     fill(0, 200, 220);
+
+    //     // text (labels [i], i * 40 + 20, height-1-values [i] * t-10);
+    //     push();
+    //     translate(i * 40 + 20, height - 1 - values[i] * t - 10);
+    //     // to tilt the texts at 45°
+    //     rotate(radians(-45));
+    //     fill(0, 200, 220);
+    //     text(labels[i], 0, 0);
+    //     pop();
+    //   };
+    //   if (t < 40) {
+    //     t = t + 1;
+    //   };
+
+    // return;
+    // };
+
+    // 14 example create line object within canvas using libraries p5.js
+    // references: https://p5js.org/reference/#/p5/line
+    // console.log("14 example create line object within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = "14 example create line object within canvas using libraries p5.js";
+    // document.getElementById('link').textContent= "reference: \r\n https://p5js.org/reference/#/p5/line";
+    // document.getElementById('link').href= "https://p5js.org/reference/#/p5/line";
+
+    // 01 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 400);
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function draw()
+    // function draw() {
+    //   line(30, 20, 85, 75);
+    //   describe("a 78 pixels long line running from mid-top to bottom-right of canvas");
+
+    //   return;
+    // };
+
+    // 15 example visualizing data saved in a csv file- create data visualization (line chart) from array csv data within canvas using libraries p5.js
+    // references: https://editor.p5js.org/jsarachan/sketches/Hyul-6OC-
+    // console.log("15 example visualizing data saved in a csv file- create data visualization (line chart) from array csv data within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = '15 example visualizing data saved in a csv file- create data visualization (line chart) from array csv data within canvas using libraries p5.js';
+    // document.getElementById('link').textContent= "reference: \r\n https://editor.p5js.org/jsarachan/sketches/Hyul-6OC-";
+    // document.getElementById('link').href= "https://editor.p5js.org/jsarachan/sketches/Hyul-6OC-";
+
+    // const budgetValues = [];
+    // const scaleValue = 0.6;
+
+    // 01 p5.js structure function preload()
+    // function preload() {
+    //   tableData = loadTable('05-workshop-budget.csv', 'csv', 'header');
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(500, 500);
+    //   numberOfRows = tableData.getRowCount();
+    //   numberOfColumns = tableData.getColumnCount();
+
+    //   return;
+    // };
+
+    // 03 p5.js structure function draw()
+    // function draw() {
+    //   background(220);
+    //   fill(0);
+    // 	stroke(0);
+
+    //   //note "-1"
+    //   for (let i = 0; i < numberOfRows; i++) {
+    //     text(tableData.getString(i, 0), i*40+50, 450);    // x legend (year)
+    //     budgetValues[i] = tableData.getString(i, 1);      // print budget values
+    //     line (i*40+60, 420-budgetValues[i], (i+1)*40+60, 420-budgetValues[i+1]);
+    //   };
+
+    //   maxValue = max(budgetValues);                       // determine highest value
+    //   for (let k = 0; k < maxValue; k = k + 50) {
+    //     text(k , 10, 420-k);                              // y legend (budget values)
+    //   };
+
+    //   return;
+    // };
+
+    // 16 example visualizing data saved in a csv file- create data visualization (warming stripe) from array csv data within canvas using libraries p5.js
+    // references:
+    // - https://bmoren.github.io/p5js-cheat-sheet
+    // - https://html-color-codes.info/color-names
+    // - https://htmlcolorcodes.com/color-names
+    // - https://editor.p5js.org/duncangeere/sketches/_OyAnLY3s
+    // - https://editor.p5js.org/ygautomo/sketches/skn7b0j57
+    // - https://www.youtube.com/watch?v=bhfpVl1OWCo
+    // console.log("16 example visualizing data saved in a csv file- create data visualization (warming stripe) from array csv data within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = '16 example visualizing data saved in a csv file- create data visualization (warming stripe) from array csv data within canvas using libraries p5.js';
+    // document.getElementById('link').textContent= "reference: \r\n https://www.youtube.com/watch?v=bhfpVl1OWCo";
+    // document.getElementById('link').href= "https://www.youtube.com/watch?v=bhfpVl1OWCo";
+
+    // // const fileCSV = '04-temperature-test-error.csv';
+    // // const fileCSV = '04-temperature-test.csv';
+    // const fileCSV = '04-temperature.csv';                 // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
+
+    // 01 p5.js structure function preload()
+    // function preload() {
+    //   // load the data
+    //   tableData = loadTable(fileCSV, 'csv', 'header');
+
+    //   return;
+    // };
+
+    // 02 p5.js structure function setup()
+    // function setup() {
+    //   createCanvas(800, 400);
+    //   noLoop();
+
+    //   // check tableData
+    //   print(tableData.get(5, 2));
+    //   // for (let r = 0; r < tableData.getRowCount(); r++) {
+    //   //   print(tableData.getRow(r).arr);
+    //   // };
+
+    //   return;
+    // };
+
+    // 03 p5.js structure function draw()
+    // function draw() {
+    //   // background(220);
+
+    //   // figure out the height and width of each bar
+    //   bars = tableData.getRowCount();
+    //   barHeight = height;
+    //   barWidth = width / bars;
+
+    //   // loop over the dataset
+    //   for (let i = 0; i < bars; i++) {
+    //     // figure out the position of the bar
+    //     x = i * barWidth;
+    //     y = 0;
+    //     // y = height - 10 - barHeight;
+
+    //     // figure out the colour of the bar
+    //     itemData = tableData.get(i, 1);
+    //     if (itemData < 0) {
+    //       barColor = lerpColor(color('White'), color('Blue'), -itemData);
+    //     } else{
+    //       barColor = lerpColor(color('White'), color('Red'), itemData);
+    //     };
+
+    //     // barColor = color('PowderBlue');
+    //     fill(barColor);
+    //     noStroke();
+
+    //     // draw the bar
+    //     rect(x, y, barWidth, barHeight);
+    //   };
+
+    //   return;
+    // };
+
+    // 17 example visualizing data saved in a csv file- create data visualization (line chart) from array csv data within canvas using libraries p5.js
+    // references:
+    // - http://localhost:5500/58-codingtrain-javascript-api/05-02-chartjs-temperature.html
+    // - https://bmoren.github.io/p5js-cheat-sheet
+    // - https://html-color-codes.info/color-names
+    // - https://htmlcolorcodes.com/color-names
+    // - https://editor.p5js.org/duncangeere/sketches/_OyAnLY3s
+    // - https://editor.p5js.org/ygautomo/sketches/skn7b0j57
+    // - https://www.youtube.com/watch?v=bhfpVl1OWCo
+    // console.log("17 example visualizing data saved in a csv file- create data visualization (line chart) from array csv data within canvas using libraries p5.js");
+    // document.getElementById('example').textContent = '17 example visualizing data saved in a csv file- create data visualization (line chart) from array csv data within canvas using libraries p5.js';
+    // document.getElementById('link').textContent= "reference: \r\n http://localhost:5500/58-codingtrain-javascript-api/05-02-chartjs-temperature.html";
+    // document.getElementById('link').href= "http://localhost:5500/58-codingtrain-javascript-api/05-02-chartjs-temperature.html";
+
+    // // const fileCSV = '04-temperature-test-error.csv';
+    // // const fileCSV = '04-temperature-test.csv';
+    // const fileCSV = '04-temperature.csv';                 // data source https://data.giss.nasa.gov/gistemp -- zonal annual means
+
+    // // 01 p5.js structure function preload()
+    // function preload() {
+    //   tableData = loadTable(fileCSV, 'csv', 'header');
+
+    //   return;
+    // };
+
+    // // 02 p5.js structure function setup()
+    // function setup() {
+    //   c = createCanvas(1200, 500);
+    //   noLoop();
+
+    //   // check tableData
+    //   print(typeof(parseFloat(tableData.get(5, 1))));
+    //   // for (let r = 0; r < tableData.getRowCount(); r++) {
+    //   //   print(tableData.getRow(r).arr);
+    //   // };
+
+    //   return;
+    // };
+
+    // // 03 p5.js structure function draw()
+    // function draw() {
+    //   let bars, barHeight, barWidth, itemData, itemDataNext = 0;
+    //   let x1, y1, x2, y2 = 0;
+
+    //   background('Seashell');
+    //   // translate(0, 300);
+
+    //   // figure out the height and width of each bar
+    //   bars = tableData.getRowCount();
+    //   barHeight = height;
+    //   barWidth = width / bars;
+
+    //   // create baseline & legend
+    //   x1 = 0;
+    //   x2 = width;
+    //   y1 = y2 = 350;
+    //   push();
+    //   strokeWeight(1);
+    //   stroke('LimeGreen');
+    //   line(x1, y1, x2, y2);
+    //   textSize(14);
+    //   fill('Blue');
+    //   text('14° C', x1, y1);
+    //   pop();
+
+    //   // loop over the dataset
+    //   for (let i = 0; i < bars; i++) {
+    //     itemData = parseFloat(tableData.get(i, 1));
+
+    //     // figure out the position of the point
+    //     x1 = i * barWidth;
+    //     y1 = 350 - (itemData * 300);
+    //     strokeWeight(5);
+
+    //     // draw the point
+    //     print(x1, y1);
+    //     point(x1, y1);
+
+    //     let mouseDist = dist(x1, y1, mouseX, mouseY);
+    //     if (mouseDist < 10) {
+    //       c.elt.title = 'hit!';
+    //     };
+
+    //     // draw the line
+    //     if (i < (bars-1)) {
+    //       itemDataNext = parseFloat(tableData.get(i+1, 1));
+
+    //       // figure out the position of the next point
+    //       x2 = (i + 1) * barWidth;
+    //       y2 = 350 - (itemDataNext * 300);
+    //       push();
+    //       strokeWeight(1);
+    //       line(x1, y1, x2, y2);
+    //       pop();
+    //     };
+    //   };
+
+    //   return;
+    // };
+
+    /* 00 main program or function main() */
+    console.log("00 main program or function main()");
+  </script>
+</body>
+</html>
+
+<!-- /* Running Command */
+-- Visual Studio Code Extension -- Live Server -->
+
+<!-- /* Data Sources: */
+- National Aeronautics and Space Administration (NASA), GISS Surface Temperature Analysis (https://data.giss.nasa.gov/gistemp)
+- National Aeronautics and Space Administration (NASA), Earth Observatory (https://earthobservatory.nasa.gov/world-of-change/global-temperatures)
+- Geographic Mass Component (https://github.com/JuliusGikonyoNyambura/Visualizing-CSV-using-P5.js) -->
+
+<!-- /* Libraries:*/
+- p5.js (https://p5js.org) -->
+
+<!-- /* References: */
+- Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- Mozilla Developer Network (MDN), References, CSS, white-space (https://developer.mozilla.org/en-US/docs/Web/CSS/white-space)
+- Mozilla Developer Network (MDN), References, Web APIs, Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+- p5.js, Editor (https://editor.p5js.org)
+- p5.js, Get Started (https://p5js.org/get-started)
+- p5.js, Wiki (https://github.com/processing/p5.js/wiki/Global-and-instance-mode)
+- Section, Getting Started with Data Visualization Using P5.js (https://www.section.io/engineering-education/getting-started-with-data-visualization-using-p5js) -->

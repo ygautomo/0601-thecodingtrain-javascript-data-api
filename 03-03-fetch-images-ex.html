@@ -1,14 +1,14 @@
 <!-- /**
- * Project: Working with Data and APIs in JavaScript
+ * Project: 01 The Coding Train -- Working with Data and APIs in JavaScript
  * Filename: 03-03-fetch-images-ex.html
  * Course: 01 The Coding Train -- Working with Data and APIs in JavaScript
- * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 03 Fetch Function- Exercise Array Images
- * Directory: D:\04 Work\03 Training Course\59 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
+ * Description: 01 The Coding Train -- Working with Data and APIs in JavaScript- 03 Fetch Function- Array Images- Exercise
+ * Directory: D:\06 Training Course\06 JavaScript\01 The Coding Train -- Working with Data and APIs in JavaScript
  * Reference Link: https://www.youtube.com/watch?v=tc8DU14qX6I&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&index=3
  * Repository: N/A
  * 
  * Author: Yugo Gautomo
- * Status: Final February 01, 2022
+ * Status: Final August 01, 2022
  */ -->
 
 <!DOCTYPE html>
@@ -17,10 +17,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 03 Fetch Function- Exercise Array Images</title>
+  <title>01 The Coding Train -- Working with Data and APIs in JavaScript- 03 Fetch Function- Array Images- Exercise</title>
 </head>
 <body>
-  <h1>03 Fetch Function- Exercise Array Images</h1>
+  <h1>03 Fetch Function- Array Images- Exercise</h1>
   <h2>03-03-fetch-images-ex.html</h2>
   <img src="" id="rainbow" width="480"/>
 
@@ -50,14 +50,14 @@
       return blobImages;
     };
 
-    /* 01 main program or function main() to call async function fetchArray() */
+    /* 00 main program or function main() */
     const fileNames = [
       '03-images/daniele-levis-pelusi-311027-unsplash.jpg',
       '03-images/guy-stevens-746794-unsplash.jpg',
       '03-images/sharon-pittaway-98257-unsplash.jpg'
     ];
 
-    console.log("01 main program or function main() to call async function fetchArray()");
+    console.log("00 main program or function main()");
     console.log("fetch the array images file", fileNames);
     fetchArray(fileNames)
       .then(arrBlobImages => {
@@ -77,6 +77,9 @@
   </script>
 </body>
 </html>
+
+<!-- /* Running Command */
+-- Visual Studio Code Extension -- Live Server -->
 
 <!-- /* References: */
 - Mozilla Developer Network (MDN), Guides, JavaScript — Dynamic client-side scripting, Asynchronous JavaScript (https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
