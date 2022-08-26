@@ -15,8 +15,8 @@
 0701-codingtrain-javascript-api
 
 ## Git Standard Command
-git version\
-git status\
+git version \
+git status \
 git config --list\
   core.repositoryformatversion=0\
   core.filemode=true\
