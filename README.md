@@ -17,22 +17,22 @@
 ## Git Standard Command
 git version \
 git status \
-git config --list \
+git config --list
   ````
-  core.repositoryformatversion=0 \
-  core.filemode=true \
-  core.bare=false \
-  core.logallrefupdates=true \
-  remote.origin.url=https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/0701-codingtrain-javascript-api.git \
-  remote.origin.fetch=+refs/heads/*:refs/remotes/origin/* \
-  branch.master.remote=origin \
-  branch.master.merge=refs/heads/master \
-  user.name={{userGitHub}} \
-  user.email={{userEmail}} \
+  core.repositoryformatversion=0
+  core.filemode=true
+  core.bare=false
+  core.logallrefupdates=true
+  remote.origin.url=https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/0701-codingtrain-javascript-api.git
+  remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+  branch.master.remote=origin
+  branch.master.merge=refs/heads/master
+  user.name={{userGitHub}}
+  user.email={{userEmail}}
   ````
 git remote --verbose \
 git remote add origin https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/{{repoGitHub}}.git \
-git remote set-url origin https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/{{repoGitHub}}.git \
+git remote set-url origin https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/{{repoGitHub}}.git
 
 ## Git Commit Repository
 git add . \
