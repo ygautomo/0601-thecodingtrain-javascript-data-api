@@ -15,24 +15,24 @@
 0701-codingtrain-javascript-api
 
 ## Git Standard Command
-git version
-git status
-git config --list
-  core.repositoryformatversion=0
-  core.filemode=true
-  core.bare=false
-  core.logallrefupdates=true
-  remote.origin.url=https://ygautomo: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@github.com/ygautomo/0601-thecodingtrain-javascript-data-api.git
-  remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
-  branch.master.remote=origin
-  branch.master.merge=refs/heads/master
-  user.name=ygautomo
-  user.email=y_gautomo@yahoo.com
-git remote --verbose
-git remote add origin https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/{{repoGitHub}}.git
-git remote set-url origin https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/{{repoGitHub}}.git
+git version\
+git status\
+git config --list\
+  core.repositoryformatversion=0\
+  core.filemode=true\
+  core.bare=false\
+  core.logallrefupdates=true\
+  remote.origin.url=https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/0601-thecodingtrain-javascript-data-api.git\
+  remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*\
+  branch.master.remote=origin\
+  branch.master.merge=refs/heads/master\
+  user.name={{userGitHub}}\
+  user.email={{userEmail}}\
+git remote --verbose\
+git remote add origin https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/{{repoGitHub}}.git\
+git remote set-url origin https://{{userGitHub}}:{{tokenGitHub}}@github.com/{{userGitHub}}/{{repoGitHub}}.git\
 
 ## Git Commit Repository
-git add .
-git commit -am "comment"
+git add .\
+git commit -am "comment"\
 git push -u origin master
